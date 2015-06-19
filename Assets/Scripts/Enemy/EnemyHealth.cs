@@ -68,11 +68,12 @@ public class EnemyHealth : MonoBehaviour
         enemyAudio.Play ();
     }
 
-
+	//for future reference, this function gets called via an event on the Death clip attached to the Models/Character/Zombunny gameObject
+	//we set this up in the inspector in video number: 7
     public void StartSinking ()
     {
         GetComponent <NavMeshAgent> ().enabled = false;
-        GetComponent <Rigidbody> ().isKinematic = true;
+        GetComponent <Rigidbody> ().isKinematic = true; //an optimization, if it's not static or dynamic, unity can ignore it
         isSinking = true;
         //ScoreManager.score += scoreValue;
         Destroy (gameObject, 2f);

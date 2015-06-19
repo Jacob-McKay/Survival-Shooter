@@ -59,11 +59,11 @@ public class PlayerShooting : MonoBehaviour
 
         gunLight.enabled = true;
 
-        gunParticles.Stop ();
+        gunParticles.Stop (); //if you don't stop the particle system while it's running you'll miss!
         gunParticles.Play ();
 
         gunLine.enabled = true;
-        gunLine.SetPosition (0, transform.position);
+		gunLine.SetPosition (0, transform.position); //the start of the bullet line
 
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
@@ -75,11 +75,11 @@ public class PlayerShooting : MonoBehaviour
             {
                 enemyHealth.TakeDamage (damagePerShot, shootHit.point);
             }
-            gunLine.SetPosition (1, shootHit.point);
+            gunLine.SetPosition (1, shootHit.point); //the end of the bullet line
         }
         else
         {
-            gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
+            gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);  //if we didn't hit anything, cap dat shit at 100 range
         }
     }
 }
